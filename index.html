@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MODELO® — Estúdio Digital</title>
+  <meta name="description" content="Site modelo com animações premium: scroll suave, parallax, pin, scroll horizontal e tipografia cinética.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23d8ff3e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Preloader: contador 0→100 + cortina que sobe -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__count" id="preloaderCount">0</span>
+  </div>
+
+  <!-- Cursor customizado (só aparece em telas com mouse) -->
+  <div class="cursor" id="cursor"></div>
+
+  <header class="nav">
+    <a class="nav__logo" href="#">MODELO<sup>®</sup></a>
+    <nav class="nav__links">
+      <a href="#manifesto" data-hover>Estúdio</a>
+      <a href="#projetos" data-hover>Projetos</a>
+      <a href="#contato" data-hover>Contato</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO: fundo animado + título gigante revelado linha por linha (SplitText) -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+        <div class="blob blob--3"></div>
+        <!--
+          Para usar um VÍDEO de fundo (como nos reels), troque as blobs acima por:
+          <video class="hero__video" autoplay muted loop playsinline poster="assets/img/poster.jpg">
+            <source src="assets/video/hero.mp4" type="video/mp4">
+          </video>
+        -->
+      </div>
+      <div class="hero__content">
+        <p class="hero__tag reveal-hero">Estúdio digital — São Paulo</p>
+        <h1 class="hero__title" id="heroTitle">Criamos sites que se movem com intenção</h1>
+        <p class="hero__sub reveal-hero">Design, movimento e código a serviço de marcas que querem ser lembradas.</p>
+      </div>
+      <div class="hero__scroll reveal-hero" aria-hidden="true">
+        <span>role para explorar</span>
+        <span class="hero__scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- MANIFESTO: texto que acende palavra por palavra conforme o scroll (scrub) -->
+    <section class="manifesto" id="manifesto">
+      <p class="manifesto__text" id="manifestoText">
+        Um site não é uma página — é uma experiência. Cada pixel, cada easing,
+        cada milissegundo de movimento comunica quem a marca é antes de qualquer palavra ser lida.
+      </p>
+    </section>
+
+    <!-- SERVIÇOS: cards que entram em cascata (stagger reveal) -->
+    <section class="services">
+      <div class="section-head">
+        <span class="section-head__index">01</span>
+        <h2 class="section-head__title">O que fazemos</h2>
+      </div>
+      <div class="services__grid">
+        <article class="service-card" data-hover>
+          <span class="service-card__num">①</span>
+          <h3>Sites imersivos</h3>
+          <p>Landing pages e institucionais com scroll suave, parallax e narrativa visual.</p>
+        </article>
+        <article class="service-card" data-hover>
+          <span class="service-card__num">②</span>
+          <h3>Identidade em movimento</h3>
+          <p>Tipografia cinética, micro-interações e transições que carregam a marca.</p>
+        </article>
+        <article class="service-card" data-hover>
+          <span class="service-card__num">③</span>
+          <h3>E-commerce premium</h3>
+          <p>Lojas rápidas e memoráveis, onde o movimento guia a conversão.</p>
+        </article>
+        <article class="service-card" data-hover>
+          <span class="service-card__num">④</span>
+          <h3>Experiências 3D</h3>
+          <p>WebGL e Three.js para produtos e mundos que saem da tela.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJETOS: seção "grudada" (pin) com scroll horizontal + parallax interno -->
+    <section class="projects" id="projetos">
+      <div class="projects__track" id="projectsTrack">
+        <div class="projects__intro">
+          <span class="section-head__index">02</span>
+          <h2>Projetos<br>selecionados</h2>
+          <p>Continue rolando →</p>
+        </div>
+        <article class="project-card">
+          <div class="project-card__media project-card__media--a" data-parallax></div>
+          <h3>Aurora Café</h3>
+          <span>Branding + Site — 2026</span>
+        </article>
+        <article class="project-card">
+          <div class="project-card__media project-card__media--b" data-parallax></div>
+          <h3>Vértice Arquitetura</h3>
+          <span>Site institucional — 2026</span>
+        </article>
+        <article class="project-card">
+          <div class="project-card__media project-card__media--c" data-parallax></div>
+          <h3>Onda Surfwear</h3>
+          <span>E-commerce — 2025</span>
+        </article>
+        <article class="project-card">
+          <div class="project-card__media project-card__media--d" data-parallax></div>
+          <h3>Pulso Fitness</h3>
+          <span>App + Landing — 2025</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- NÚMEROS: contadores que sobem sozinhos ao entrar na tela -->
+    <section class="stats">
+      <div class="stat"><span class="stat__num" data-count="48">0</span><span class="stat__label">projetos entregues</span></div>
+      <div class="stat"><span class="stat__num" data-count="12">0</span><span class="stat__label">prêmios de design</span></div>
+      <div class="stat"><span class="stat__num" data-count="97">0</span><span class="stat__label">% clientes que voltam</span></div>
+    </section>
+
+    <!-- MARQUEE: faixa infinita -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__inner" id="marqueeInner">
+        <span>design — movimento — código — </span><span>design — movimento — código — </span>
+      </div>
+    </div>
+
+    <!-- CONTATO: CTA com botão magnético -->
+    <section class="footer-cta" id="contato">
+      <h2 class="footer-cta__title" id="ctaTitle">Vamos criar algo em movimento?</h2>
+      <a class="btn-magnetic" id="magneticBtn" href="mailto:contato@modelo.com.br" data-hover>
+        <span>Começar um projeto</span>
+      </a>
+      <footer class="footer">
+        <span>MODELO® Estúdio Digital</span>
+        <span>São Paulo — Brasil</span>
+        <span>© 2026</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

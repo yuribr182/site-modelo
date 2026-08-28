@@ -1,5 +1,33 @@
 # Site Modelo — Sites com animações premium (nível Awwwards)
 
+## ▶ Como rodar o site
+
+O site já está pronto neste repositório (`index.html`) e **funciona offline** —
+as bibliotecas estão em `assets/vendor/`. Basta abrir o `index.html` no navegador,
+ou rodar um servidor local:
+
+```bash
+npx serve .        # ou: python3 -m http.server 8000
+```
+
+### O que o site demonstra (os efeitos dos reels)
+
+| Efeito no vídeo | Onde está no código |
+|---|---|
+| Preloader com contador 0→100 | `assets/js/main.js` seção 2 |
+| Scroll suave "amanteigado" | Lenis — seção 1 |
+| Título revelado linha por linha | SplitText com `mask: "lines"` — seção 3 |
+| Texto que acende palavra por palavra | SplitText + scrub — seção 4 |
+| Cards em cascata | `ScrollTrigger.batch` — seção 5 |
+| Seção presa com scroll horizontal | `pin` + `containerAnimation` — seção 6 |
+| Parallax nas imagens | `backgroundPosition` + scrub — seção 6 |
+| Contadores animados | seção 7 |
+| Marquee infinita | seção 8 |
+| Botão magnético + cursor customizado | `gsap.quickTo` — seções 9 e 10 |
+
+Para colocar um **vídeo de fundo** no hero, veja o comentário dentro do
+`index.html` (basta trocar as "blobs" por uma tag `<video>`).
+
 Este repositório está preparado para criar sites como os que aparecem nos reels do Instagram:
 páginas com scroll suave, textos que se revelam, seções que "grudam" na tela (pin),
 parallax, vídeos de fundo e micro-interações.
