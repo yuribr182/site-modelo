@@ -106,7 +106,36 @@ const EXPLODE = { PaoDeCima: 1.7, Bacon: 0.9, ... };
 Pronto — o resto do código não muda. É exatamente assim que os sites dos
 reels funcionam.
 
-## 6. Ferramentas e skills instaladas neste repositório
+## 6. IA que cria o modelo 3D a partir de uma FOTO do seu lanche
+
+Existe, e é o caminho mais rápido para o resultado do reel. São as IAs
+**imagem → 3D** (todas exportam `.glb`, que encaixa direto no `burger.js`):
+
+| Ferramenta | Tipo | Observação |
+|---|---|---|
+| **Meshy** (meshy.ai) | web, tem plano grátis | a mais equilibrada; texturas PBR prontas |
+| **Tripo** (tripo3d.ai) | web, tem plano grátis | rápida, boa geometria |
+| **Rodin / Hyper3D** (hyper3d.ai) | web | qualidade topo de linha |
+| **Hunyuan3D** (Tencent) | open source | roda de graça no Hugging Face |
+| **TRELLIS** (Microsoft) | open source | idem |
+| **Polycam / RealityScan / KIRI** | app de celular | fotogrametria: você filma o lanche real girando — o resultado É o seu lanche |
+
+### O truque que ninguém conta: gere POR INGREDIENTE
+
+Uma foto do lanche **fechado** vira **uma peça única** — não dá para desmontar.
+Para ter o efeito do reel:
+
+1. Monte os ingredientes separados numa bancada: pão de cima, pão de baixo,
+   carne, queijo, alface, tomate — **fotografe cada um** (luz boa, fundo neutro).
+2. Suba **uma foto por ingrediente** na Meshy/Tripo → baixe um `.glb` de cada.
+3. No site, carregue os arquivos e ajuste o mapa `EXPLODE` com um nome por peça
+   (ou junte tudo num único `.glb` no Blender: File → Import → glTF, empilhe,
+   renomeie os objetos e exporte).
+
+Com fotogrametria (Polycam etc.) vale o mesmo: escaneie cada ingrediente
+separado. O resultado é literalmente o SEU lanche em 3D, fotorrealista.
+
+## 7. Ferramentas e skills instaladas neste repositório
 
 - `.claude/skills/threejs-webgl` — Three.js completo (cenas, materiais, luz)
 - `.claude/skills/blender-web-pipeline` — exportar do Blender para a web
