@@ -3,161 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MODELO® — Estúdio Digital</title>
-  <meta name="description" content="Site modelo com animações premium: scroll suave, parallax, pin, scroll horizontal e tipografia cinética.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23d8ff3e'/%3E%3C/svg%3E">
+  <title>Front Burger Co. — Carne · Fogo · Técnica</title>
+  <meta name="description" content="O básico, levado à perfeição. Char broiled na brasa e smash na chapa. Role e veja o burger se montar.">
+  <meta property="og:image" content="assets/img/bacon-burger.webp">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23d21f2f'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/front.css">
 </head>
 <body>
 
-  <!-- Preloader: contador 0→100 + cortina que sobe -->
-  <div class="preloader" id="preloader">
-    <span class="preloader__count" id="preloaderCount">0</span>
+  <!-- Tela de carregamento: some quando os frames do vídeo estão prontos -->
+  <div class="loader" id="loader">
+    <span class="loader__logo">FRONT <em>BURGER CO.</em></span>
+    <span class="loader__count" id="loaderCount">0%</span>
   </div>
 
-  <!-- Cursor customizado (só aparece em telas com mouse) -->
-  <div class="cursor" id="cursor"></div>
-
   <header class="nav">
-    <a class="nav__logo" href="#">MODELO<sup>®</sup></a>
+    <a class="nav__logo" href="#">FRONT <em>BURGER CO.</em></a>
     <nav class="nav__links">
-      <a href="#manifesto" data-hover>Estúdio</a>
-      <a href="#projetos" data-hover>Projetos</a>
-      <a href="#contato" data-hover>Contato</a>
+      <a href="#conceito">O Conceito</a>
+      <a href="#casa">A Casa</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#galeria">Galeria</a>
+      <a class="nav__cta" href="https://wa.me/5535997476000" target="_blank" rel="noopener">Peça aqui</a>
     </nav>
   </header>
 
-  <main id="main">
-
-    <!-- HERO: fundo animado + título gigante revelado linha por linha (SplitText) -->
+  <main>
+    <!-- ============ HERO: o scroll desmonta o burger (vídeo frame a frame) ============ -->
     <section class="hero" id="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="blob blob--1"></div>
-        <div class="blob blob--2"></div>
-        <div class="blob blob--3"></div>
-        <!--
-          Para usar um VÍDEO de fundo (como nos reels), troque as blobs acima por:
-          <video class="hero__video" autoplay muted loop playsinline poster="assets/img/poster.jpg">
-            <source src="assets/video/hero.mp4" type="video/mp4">
-          </video>
-        -->
+      <canvas id="heroCanvas"></canvas>
+      <div class="hero__vignette"></div>
+
+      <div class="hero__title" id="heroTitle">
+        <h1>FRONT <em>BURGER CO.</em></h1>
+        <p class="hero__tagline">CARNE · FOGO · TÉCNICA</p>
+        <p class="hero__hint">Role para baixo <span class="hero__arrow">↓</span></p>
       </div>
-      <div class="hero__content">
-        <p class="hero__tag reveal-hero">Estúdio digital — São Paulo</p>
-        <h1 class="hero__title" id="heroTitle">Criamos sites que se movem com intenção</h1>
-        <p class="hero__sub reveal-hero">Design, movimento e código a serviço de marcas que querem ser lembradas.</p>
+
+      <!-- Os três pilares da casa aparecem enquanto o burger abre -->
+      <div class="hero__label hero__label--1" id="heroLabel1">
+        <span>01</span><h3>Carne</h3>
+        <p>Blend próprio de fraldinha, moído todos os dias. Insumos escolhidos a dedo.</p>
       </div>
-      <div class="hero__scroll reveal-hero" aria-hidden="true">
-        <span>role para explorar</span>
-        <span class="hero__scroll-line"></span>
+      <div class="hero__label hero__label--2" id="heroLabel2">
+        <span>02</span><h3>Fogo</h3>
+        <p>Char broiled na brasa — o que dá sabor, aroma e personalidade ao burger.</p>
+      </div>
+      <div class="hero__label hero__label--3" id="heroLabel3">
+        <span>03</span><h3>Técnica</h3>
+        <p>Smash prensado na chapa até formar crosta e caramelizar. Padrão em cada pedido.</p>
+      </div>
+
+      <div class="hero__end" id="heroEnd">
+        <h2>O básico. <em>Bem feito.</em></h2>
+        <a class="btn" href="https://wa.me/5535997476000" target="_blank" rel="noopener">Peça aqui</a>
       </div>
     </section>
 
-    <!-- MANIFESTO: texto que acende palavra por palavra conforme o scroll (scrub) -->
-    <section class="manifesto" id="manifesto">
-      <p class="manifesto__text" id="manifestoText">
-        Um site não é uma página — é uma experiência. Cada pixel, cada easing,
-        cada milissegundo de movimento comunica quem a marca é antes de qualquer palavra ser lida.
+    <!-- ============ O CONCEITO ============ -->
+    <section class="concept" id="conceito">
+      <div class="section-head"><span>O Conceito</span><h2>O básico.<br><em>Bem feito.</em></h2></div>
+      <p class="concept__text">
+        A Front nasceu de uma ideia simples e teimosa: o básico, levado à perfeição.
+        Sem invenção, sem excesso — só o essencial, feito no capricho. Escolhemos cada
+        insumo a dedo e trabalhamos tudo <strong>100% dentro de casa</strong>, do blend ao molho.
       </p>
-    </section>
-
-    <!-- SERVIÇOS: cards que entram em cascata (stagger reveal) -->
-    <section class="services">
-      <div class="section-head">
-        <span class="section-head__index">01</span>
-        <h2 class="section-head__title">O que fazemos</h2>
-      </div>
-      <div class="services__grid">
-        <article class="service-card" data-hover>
-          <span class="service-card__num">①</span>
-          <h3>Sites imersivos</h3>
-          <p>Landing pages e institucionais com scroll suave, parallax e narrativa visual.</p>
-        </article>
-        <article class="service-card" data-hover>
-          <span class="service-card__num">②</span>
-          <h3>Identidade em movimento</h3>
-          <p>Tipografia cinética, micro-interações e transições que carregam a marca.</p>
-        </article>
-        <article class="service-card" data-hover>
-          <span class="service-card__num">③</span>
-          <h3>E-commerce premium</h3>
-          <p>Lojas rápidas e memoráveis, onde o movimento guia a conversão.</p>
-        </article>
-        <article class="service-card" data-hover>
-          <span class="service-card__num">④</span>
-          <h3>Experiências 3D</h3>
-          <p>WebGL e Three.js para produtos e mundos que saem da tela.</p>
-        </article>
+      <p class="concept__text concept__text--muted">
+        O padrão é sagrado: o mesmo burger, do mesmo jeito, sempre no ponto.
+        É esse compromisso com a constância que a gente chama de técnica.
+      </p>
+      <span class="concept__spec">SPEC · FRALDINHA 180G</span>
+      <div class="pillars">
+        <div class="pillar"><span>01</span><h3>Carne</h3><p>Blend próprio de fraldinha, moído todos os dias. Insumos escolhidos a dedo.</p></div>
+        <div class="pillar"><span>02</span><h3>Fogo</h3><p>Char broiled na brasa — o que dá sabor, aroma e personalidade ao burger.</p></div>
+        <div class="pillar"><span>03</span><h3>Técnica</h3><p>Smash prensado na chapa até formar crosta e caramelizar. Padrão em cada pedido.</p></div>
       </div>
     </section>
 
-    <!-- PROJETOS: seção "grudada" (pin) com scroll horizontal + parallax interno -->
-    <section class="projects" id="projetos">
-      <div class="projects__track" id="projectsTrack">
-        <div class="projects__intro">
-          <span class="section-head__index">02</span>
-          <h2>Projetos<br>selecionados</h2>
-          <p>Continue rolando →</p>
-        </div>
-        <article class="project-card">
-          <div class="project-card__media project-card__media--a" data-parallax></div>
-          <h3>Aurora Café</h3>
-          <span>Branding + Site — 2026</span>
-        </article>
-        <article class="project-card">
-          <div class="project-card__media project-card__media--b" data-parallax></div>
-          <h3>Vértice Arquitetura</h3>
-          <span>Site institucional — 2026</span>
-        </article>
-        <article class="project-card">
-          <div class="project-card__media project-card__media--c" data-parallax></div>
-          <h3>Onda Surfwear</h3>
-          <span>E-commerce — 2025</span>
-        </article>
-        <article class="project-card">
-          <div class="project-card__media project-card__media--d" data-parallax></div>
-          <h3>Pulso Fitness</h3>
-          <span>App + Landing — 2025</span>
-        </article>
-      </div>
-    </section>
-
-    <!-- NÚMEROS: contadores que sobem sozinhos ao entrar na tela -->
-    <section class="stats">
-      <div class="stat"><span class="stat__num" data-count="48">0</span><span class="stat__label">projetos entregues</span></div>
-      <div class="stat"><span class="stat__num" data-count="12">0</span><span class="stat__label">prêmios de design</span></div>
-      <div class="stat"><span class="stat__num" data-count="97">0</span><span class="stat__label">% clientes que voltam</span></div>
-    </section>
-
-    <!-- MARQUEE: faixa infinita -->
+    <!-- Frases da casa em marquee -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__inner" id="marqueeInner">
-        <span>design — movimento — código — </span><span>design — movimento — código — </span>
+        <span>Menos marketing. Mais burger. — Carne. Fogo. Técnica. — O básico bem feito. — Burger sem mimimi. — Nada de excessos. — Clássicos bem feitos. — Sem invenção. Só burger de verdade. — Fogo alto. Sabor de verdade. — </span><span>Menos marketing. Mais burger. — Carne. Fogo. Técnica. — O básico bem feito. — Burger sem mimimi. — Nada de excessos. — Clássicos bem feitos. — Sem invenção. Só burger de verdade. — Fogo alto. Sabor de verdade. — </span>
       </div>
     </div>
 
-    <!-- CONTATO: CTA com botão magnético -->
-    <section class="footer-cta" id="contato">
-      <h2 class="footer-cta__title" id="ctaTitle">Vamos criar algo em movimento?</h2>
-      <a class="btn-magnetic" id="magneticBtn" href="mailto:contato@modelo.com.br" data-hover>
-        <span>Começar um projeto</span>
-      </a>
-      <footer class="footer">
-        <span>MODELO® Estúdio Digital</span>
-        <span>São Paulo — Brasil</span>
-        <span>© 2026</span>
-      </footer>
+    <!-- ============ A CASA ============ -->
+    <section class="house" id="casa">
+      <div class="section-head"><span>A Casa</span><h2>Burger<br><em>sem mimimi.</em></h2></div>
+      <div class="house__grid">
+        <p class="house__text">
+          Um balcão, a brasa e o cheiro de fogo alto. Nada de excessos, nada de
+          invenção — só clássicos bem feitos, do jeito que tem que ser.
+        </p>
+        <div class="house__facts">
+          <span class="tag">Na cozinha · o chef</span>
+          <h3>Feito por nós.<br>Todos os dias.</h3>
+          <span class="tag tag--red">Char broiled · 180G</span>
+        </div>
+      </div>
     </section>
 
+    <!-- ============ O CARDÁPIO ============ -->
+    <section class="menu" id="cardapio">
+      <div class="section-head"><span>O Cardápio</span><h2>Escolha <em>seu lado</em></h2></div>
+
+      <h3 class="menu__series">Broiler Series <small>Char broiled · grelhado na brasa</small></h3>
+      <div class="menu__grid">
+        <article class="menu-card">
+          <img src="assets/img/bacon-burger.webp" alt="Broiler Bacon" loading="lazy">
+          <div class="menu-card__body"><h4>Broiler Bacon</h4><p>Pão brioche, fraldinha 180g na Char Broiler, queijo, bacon premium, cebola caramelizada e maionese da casa.</p><span>R$ 38,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80" alt="Broiler Burger" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Broiler Burger</h4><p>Pão brioche, hambúrguer de fraldinha 180g, grelhado na Char Broiler.</p><span>R$ 32,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=80" alt="Broiler Cheese" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Broiler Cheese</h4><p>Pão brioche, hambúrguer de fraldinha 180g grelhado na Char Broiler, queijo.</p><span>R$ 35,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=700&q=80" alt="Broiler Salad" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Broiler Salad</h4><p>Pão brioche, fraldinha 180g na Char Broiler, queijo, alface, tomate e maionese da casa.</p><span>R$ 36,90</span></div>
+        </article>
+      </div>
+
+      <h3 class="menu__series">Smash Series <small>Prensado na chapa · crosta e sabor</small></h3>
+      <div class="menu__grid">
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=700&q=80" alt="Smash Burger" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Smash Burger</h4><p>Pão brioche, 2 smash burgers prensados na chapa, cebola, ketchup, mostarda e picles.</p><span>R$ 28,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=700&q=80" alt="Smash Cheese" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Smash Cheese</h4><p>Pão brioche, 2 smash burgers na chapa, queijo, cebola, ketchup, mostarda e picles.</p><span>R$ 31,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=700&q=80" alt="Smash Salad" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Smash Salad</h4><p>Pão brioche, 2 smash burgers na chapa, queijo, alface, cebola, ketchup, mostarda e picles.</p><span>R$ 32,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80" alt="Smash Bacon" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Smash Bacon</h4><p>Pão brioche, 2 smash burgers na chapa, queijo, bacon premium, cebola, ketchup, mostarda e picles.</p><span>R$ 34,90</span></div>
+        </article>
+      </div>
+
+      <h3 class="menu__series">Acompanhamentos</h3>
+      <div class="menu__grid menu__grid--half">
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80" alt="Fries" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Fries</h4><p>Batata frita crocante e sequinha.</p><span>R$ 12,90</span></div>
+        </article>
+        <article class="menu-card">
+          <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=700&q=80" alt="Onion Rings" loading="lazy" onerror="this.style.display='none'">
+          <div class="menu-card__body"><h4>Onion Rings</h4><p>Anéis de cebola empanados.</p><span>R$ 13,90</span></div>
+        </article>
+      </div>
+
+      <h3 class="menu__series">Combos</h3>
+      <div class="menu__grid menu__grid--third">
+        <article class="menu-card"><div class="menu-card__body"><h4>Combo Broiler</h4><p>Broiler Cheese + Fries + Refrigerante</p><span>R$ 49,90</span></div></article>
+        <article class="menu-card"><div class="menu-card__body"><h4>Combo Bacon</h4><p>Broiler Bacon + Fries + Refrigerante</p><span>R$ 52,90</span></div></article>
+        <article class="menu-card"><div class="menu-card__body"><h4>Combo Smash</h4><p>Smash Cheese + Fries + Refrigerante</p><span>R$ 46,90</span></div></article>
+      </div>
+
+      <div class="menu__lists">
+        <div class="menu-list">
+          <h3 class="menu__series">Extras</h3>
+          <ul>
+            <li><span>Queijo</span><b>R$ 3,00</b></li>
+            <li><span>Bacon</span><b>R$ 4,00</b></li>
+            <li><span>Smash extra (1 un.)</span><b>R$ 6,00</b></li>
+            <li><span>Hambúrguer 180g extra</span><b>R$ 8,00</b></li>
+            <li><span>Alface</span><b>R$ 1,00</b></li>
+            <li><span>Tomate</span><b>R$ 1,00</b></li>
+            <li><span>Cebola caramelizada</span><b>R$ 2,00</b></li>
+            <li><span>Cebola grelhada</span><b>R$ 2,00</b></li>
+            <li><span>Picles extra</span><b>R$ 1,00</b></li>
+            <li><span>Maionese da casa</span><b>R$ 1,00</b></li>
+          </ul>
+        </div>
+        <div class="menu-list">
+          <h3 class="menu__series">Bebidas</h3>
+          <ul>
+            <li><span>Água mineral</span><b>R$ 4,00</b></li>
+            <li><span>Refrigerantes</span><b>R$ 6,00</b></li>
+            <li><span>Sucos</span><b>R$ 6,00</b></li>
+          </ul>
+          <p class="menu-list__note">Front Blend · Crafted in house</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALERIA ============ -->
+    <section class="gallery" id="galeria">
+      <div class="section-head"><span>Fogo alto · Galeria</span><h2>Carne, fogo<br><em>&amp; técnica</em></h2></div>
+      <div class="gallery__grid">
+        <figure class="gallery__item gallery__item--wide"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=900&q=80" alt="Burger na brasa" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>burger na brasa</figcaption></figure>
+        <figure class="gallery__item"><img src="https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=700&q=80" alt="Char broiler" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>char broiler</figcaption></figure>
+        <figure class="gallery__item"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80" alt="Fritas" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>fritas</figcaption></figure>
+        <figure class="gallery__item"><img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=700&q=80" alt="Smash na chapa" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>smash na chapa</figcaption></figure>
+        <figure class="gallery__item gallery__item--wide"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80" alt="O cheiro de fogo" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>o cheiro de fogo</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ============ PEDIR / REDES ============ -->
+    <section class="order" id="pedir">
+      <span class="tag tag--red">Redes · Siga a Front · @front.burger</span>
+      <h2>Bateu <em>a fome?</em></h2>
+      <p>Peça e receba onde você estiver.</p>
+      <div class="order__buttons">
+        <a class="btn" href="https://wa.me/5535997476000" target="_blank" rel="noopener">Peça aqui · WhatsApp</a>
+        <a class="btn btn--ghost" href="https://www.ifood.com.br" target="_blank" rel="noopener">Pedir no iFood</a>
+        <a class="btn btn--ghost" href="https://instagram.com/front.burger" target="_blank" rel="noopener">Seguir no Instagram</a>
+      </div>
+      <footer class="footer">
+        <span>FRONT BURGER CO.</span>
+        <span>@front.burger · WhatsApp (35) 99747-6000</span>
+        <span>© 2026 Front Burger Co. · Carne · Fogo · Técnica</span>
+      </footer>
+    </section>
   </main>
 
   <script src="assets/vendor/gsap.min.js"></script>
   <script src="assets/vendor/ScrollTrigger.min.js"></script>
-  <script src="assets/vendor/SplitText.min.js"></script>
   <script src="assets/vendor/lenis.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/front.js"></script>
 </body>
 </html>
