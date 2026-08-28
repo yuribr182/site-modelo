@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front Burguer — Hamburgueria Artesanal</title>
+  <meta name="description" content="Smash burgers artesanais. Role a página e veja o lanche se montar.">
+  <meta property="og:image" content="assets/img/bacon-burger.webp">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f0a01e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/front.css">
+</head>
+<body>
+
+  <!-- Tela de carregamento: some quando os frames do vídeo estão prontos -->
+  <div class="loader" id="loader">
+    <span class="loader__logo">FRONT<em>BURGUER</em></span>
+    <span class="loader__count" id="loaderCount">0%</span>
+  </div>
+
+  <header class="nav">
+    <a class="nav__logo" href="#">FRONT<em>BURGUER</em></a>
+    <nav class="nav__links">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#local">Onde estamos</a>
+      <a class="nav__cta" href="#pedir">Pedir agora</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO: o scroll controla o vídeo do lanche ============ -->
+    <section class="hero" id="hero">
+      <canvas id="heroCanvas"></canvas>
+      <div class="hero__vignette"></div>
+
+      <div class="hero__title" id="heroTitle">
+        <h1>FRONT<em>BURGUER</em></h1>
+        <p>Role para desmontar o lanche</p>
+        <span class="hero__arrow">↓</span>
+      </div>
+
+      <!-- Rótulos sincronizados com o vídeo (aparecem quando o lanche abre) -->
+      <div class="hero__label hero__label--1" id="heroLabel1">
+        <h3>Bacon em dobro</h3><p>Defumado e crocante, tostado na chapa.</p>
+      </div>
+      <div class="hero__label hero__label--2" id="heroLabel2">
+        <h3>Cebola caramelizada</h3><p>Doçura lenta, no ponto de brilho.</p>
+      </div>
+      <div class="hero__label hero__label--3" id="heroLabel3">
+        <h3>Cheddar + Smash 160g</h3><p>Derretido por cima da crosta perfeita.</p>
+      </div>
+
+      <div class="hero__end" id="heroEnd">
+        <h2>Montado na sua frente.</h2>
+        <a class="btn" href="#pedir">Peça o seu</a>
+      </div>
+    </section>
+
+    <!-- ============ CARDÁPIO ============ -->
+    <!-- ⚠️ TROQUE nomes, descrições e preços pelos do cardápio real -->
+    <section class="menu" id="cardapio">
+      <div class="section-head">
+        <span>01</span><h2>Cardápio</h2>
+      </div>
+      <div class="menu__grid">
+        <article class="menu-card menu-card--featured">
+          <img src="assets/img/bacon-burger.webp" alt="Front Bacon: smash burger com cheddar, cebola caramelizada e bacon">
+          <div class="menu-card__body">
+            <h3>Front Bacon</h3>
+            <p>Smash 160g, cheddar, cebola caramelizada, bacon em dobro e maionese da casa no brioche.</p>
+            <span class="menu-card__price">R$ 34,90</span>
+          </div>
+        </article>
+        <article class="menu-card">
+          <div class="menu-card__body">
+            <h3>Front Clássico</h3>
+            <p>Smash 160g, queijo prato, picles e maionese da casa.</p>
+            <span class="menu-card__price">R$ 27,90</span>
+          </div>
+        </article>
+        <article class="menu-card">
+          <div class="menu-card__body">
+            <h3>Front Duplo</h3>
+            <p>Dois smash 160g, dobro de cheddar e cebola na chapa.</p>
+            <span class="menu-card__price">R$ 39,90</span>
+          </div>
+        </article>
+        <article class="menu-card">
+          <div class="menu-card__body">
+            <h3>Front Veggie</h3>
+            <p>Burger de grão-de-bico crocante, queijo e maionese verde.</p>
+            <span class="menu-card__price">R$ 29,90</span>
+          </div>
+        </article>
+        <article class="menu-card">
+          <div class="menu-card__body">
+            <h3>Batata + Cheddar</h3>
+            <p>Fritas rústicas com cheddar cremoso e farofa de bacon.</p>
+            <span class="menu-card__price">R$ 19,90</span>
+          </div>
+        </article>
+        <article class="menu-card">
+          <div class="menu-card__body">
+            <h3>Milkshake</h3>
+            <p>Chocolate, morango ou doce de leite com flor de sal.</p>
+            <span class="menu-card__price">R$ 16,90</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE ============ -->
+    <section class="about" id="sobre">
+      <div class="section-head"><span>02</span><h2>Sobre nós</h2></div>
+      <!-- ⚠️ TROQUE pelo texto real da Front Burguer -->
+      <p class="about__text">
+        Nascemos da obsessão pelo smash perfeito: carne prensada na chapa
+        quente, crosta caramelizada e ingredientes de verdade. Sem atalhos,
+        sem congelados — hambúrguer artesanal do jeito que tem que ser.
+      </p>
+    </section>
+
+    <!-- ============ LOCALIZAÇÃO / HORÁRIO ============ -->
+    <section class="info" id="local">
+      <div class="section-head"><span>03</span><h2>Onde estamos</h2></div>
+      <div class="info__grid">
+        <!-- ⚠️ TROQUE endereço e horários pelos reais -->
+        <div class="info-card">
+          <h3>Endereço</h3>
+          <p>Rua Exemplo, 123 — Centro<br>Sua Cidade / UF</p>
+        </div>
+        <div class="info-card">
+          <h3>Horário</h3>
+          <p>Ter – Dom<br>18h às 23h30</p>
+        </div>
+        <div class="info-card">
+          <h3>Contato</h3>
+          <p>(00) 90000-0000<br>@frontburguer</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL / DELIVERY ============ -->
+    <section class="order" id="pedir">
+      <h2>Bateu a fome?</h2>
+      <div class="order__buttons">
+        <!-- ⚠️ TROQUE os links pelos reais (WhatsApp / iFood / Instagram) -->
+        <a class="btn" href="https://wa.me/5500900000000" target="_blank" rel="noopener">Pedir no WhatsApp</a>
+        <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Pedir no iFood</a>
+        <a class="btn btn--ghost" href="https://instagram.com/frontburguer" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <footer class="footer">
+        <span>FRONT BURGUER — Hamburgueria Artesanal</span>
+        <span>© 2026 — Todos os direitos reservados</span>
+      </footer>
+    </section>
+  </main>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/js/front.js"></script>
+</body>
+</html>
