@@ -97,22 +97,27 @@ if (!reduced) {
     .fromTo("#heroEnd", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1 }, 8.6);
 
   /* ---------- Reveals das seções seguintes ---------- */
-  ScrollTrigger.batch(".menu-card", {
-    start: "top 85%",
+  ScrollTrigger.batch(".menu-card, .pillar", {
+    start: "top 88%",
     once: true,
-    onEnter: (cards) =>
-      gsap.to(cards, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }),
+    onEnter: (els) =>
+      gsap.to(els, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }),
   });
 
-  gsap.utils.toArray(".section-head, .about__text, .info-card, .order h2").forEach((el) => {
+  gsap.utils.toArray(
+    ".section-head, .concept__text, .concept__spec, .house__text, .house__facts, .menu-list, .gallery__item"
+  ).forEach((el) => {
     gsap.from(el, {
       opacity: 0,
       y: 40,
       duration: 0.9,
       ease: "power3.out",
-      scrollTrigger: { trigger: el, start: "top 85%", once: true },
+      scrollTrigger: { trigger: el, start: "top 88%", once: true },
     });
   });
+
+  /* Frases da casa em marquee infinita */
+  gsap.to("#marqueeInner", { xPercent: -50, duration: 30, repeat: -1, ease: "none" });
 } else {
   /* Sem animação: mostra o lanche montado e todo o conteúdo */
   playhead.frame = 0;
