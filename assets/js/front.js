@@ -6,7 +6,7 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 100; // o vídeo fecha no ~92 e fica parado; o resto foi cortado
 const framePath = (i) => `assets/frames/frame_${String(i + 1).padStart(3, "0")}.webp`;
 
 const canvas = document.getElementById("heroCanvas");
@@ -21,6 +21,7 @@ const lenis = new Lenis();
 lenis.on("scroll", ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
+lenis.stop(); // scroll travado até os frames do hero carregarem
 
 /* ---------- Pré-carrega os frames ---------- */
 const frames = new Array(FRAME_COUNT);
@@ -37,10 +38,23 @@ for (let i = 0; i < FRAME_COUNT; i++) {
     while (maxReady < FRAME_COUNT - 1 && frames[maxReady + 1]) maxReady++;
     const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
     loaderCount.textContent = pct + "%";
-    if (i === 0) { resize(); render(); }
-    /* Libera a página com 15% carregado; o resto chega durante o scroll */
-    if (pct >= 15 && !loaderEl.classList.contains("done")) {
+    if (i === 0) { resize(); }
+    render(); // redesenha conforme os frames chegam (evita "pulos" na animação)
+    /* Só libera a página com TODOS os frames prontos: o scroll nunca
+       encontra um frame faltando e a animação roda 1:1 com o dedo. */
+    if (loadedCount >= FRAME_COUNT && !loaderEl.classList.contains("done")) {
       loaderEl.classList.add("done");
+      lenis.start();
+      gsap.to(loaderEl, { opacity: 0, duration: 0.6, onComplete: () => (loaderEl.style.display = "none") });
+    }
+  };
+  img.onerror = () => {
+    frames[i] = frames[i - 1] || null; // reaproveita o anterior; não trava a página
+    loadedCount++;
+    while (maxReady < FRAME_COUNT - 1 && frames[maxReady + 1]) maxReady++;
+    if (loadedCount >= FRAME_COUNT && !loaderEl.classList.contains("done")) {
+      loaderEl.classList.add("done");
+      lenis.start();
       gsap.to(loaderEl, { opacity: 0, duration: 0.6, onComplete: () => (loaderEl.style.display = "none") });
     }
   };
